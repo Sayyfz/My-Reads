@@ -21,6 +21,6 @@ const Shelves = ({currentlyReading, wantToRead, read}) => {
                 </div>
             </div>
     )
-}
+};
 
-export default Shelves
+export default Shelves;

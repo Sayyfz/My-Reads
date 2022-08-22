@@ -6,7 +6,7 @@ import Search from "./components/Search";
 
 function App() {
   
-  const allBooks = [[
+  const allBooks = [
     {
         id: 1,
         cover:  'url("http://books.google.com/books/content?id=pD6arNyKyi8C&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE70Rw0CCwNZh0SsYpQTkMbvz23npqWeUoJvVbi_gXla2m2ie_ReMWPl0xoU8Quy9fk0Zhb3szmwe8cTe4k7DAbfQ45FEzr9T7Lk0XhVpEPBvwUAztOBJ6Y0QPZylo4VbB7K5iRSk&source=gbs_api")',
@@ -19,7 +19,7 @@ function App() {
         title: "Oh, the Places You'll Go!",
         authors: ["Seuss"]
     }
-  ]]
+  ];
 
   const [currentlyReading, setCurrentlyReading] = useState([
     {
@@ -28,7 +28,7 @@ function App() {
         title: "Oh, the Places You'll Go!",
         authors: ["Seuss"]
     }
-  ])
+  ]);
 
   const [wantToRead, setWantToRead] = useState([
     {
@@ -37,9 +37,9 @@ function App() {
       title: "The Adventures of Tom Sawyer",
       authors: ["Mark Twain" , "Test Name"]
     }
-  ])
+  ]);
 
-  const [read, setRead] = useState([])
+  const [read, setRead] = useState([]);
 
   return (
     <div className="app">

@@ -10,11 +10,11 @@ const Search = ({books}) => {
     
     const filteredBooks = (query) => {
         console.log(books);
-        // return books.filter( (book) => 
-        //     book.title.toLowerCase().includes(query.toLowerCase()) );
+        return books.filter( (book) => 
+            book.title.toLowerCase().includes(query.toLowerCase()) );
     } 
     
-    const booksToShow = searchQuery === "" ? [] : books;
+    const booksToShow = searchQuery === "" ? [] : filteredBooks(searchQuery);
 
     const updateSearchQuery = (event) => {
         setSearchQuery(event.target.value);
@@ -41,7 +41,7 @@ const Search = ({books}) => {
             <div className="search-books-results">
                 <ol className="books-grid">
                     {
-                        // booksToShow.length !== 0 && booksToShow.map((book) => <li key={book.id}> <Book book={book}/> </li>)
+                        booksToShow.length !== 0 && booksToShow.map((book) => <li key={book.id}> <Book book={book}/> </li>)
                     }
                 </ol>
                 
