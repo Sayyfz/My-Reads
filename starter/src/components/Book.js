@@ -1,8 +1,11 @@
 
 
-const Book = ({book}) => {
+const Book = ({book, onUpdateShelf}) => {
 
-    console.log(book.imageLinks.thumbnail)
+    const selectShelf = (event) => {
+        onUpdateShelf(book, event.target.value)
+    }
+
     return (
         <div className="book">
 
@@ -17,7 +20,7 @@ const Book = ({book}) => {
                 ></div>
 
                 <div className="book-shelf-changer">
-                    <select>
+                    <select onChange={selectShelf}>
                         <option value="none" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>

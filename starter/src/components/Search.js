@@ -2,23 +2,31 @@ import {Link} from 'react-router-dom'
 import { useState } from 'react'
 import Book from './Book'
 
-const Search = ({books}) => {
+const Search = ({books, onUpdateShelf}) => {
 
     
     const [searchQuery, setSearchQuery] = useState("");
 
-    
+    const authorsContainQuery = (authors, query) => {
+        for(let author of authors)
+        {
+            if(author.toLowerCase().includes(query.toLowerCase()) )
+                return true;
+        }
+        return false;
+    };
+
     const filteredBooks = (query) => {
-        console.log(books);
         return books.filter( (book) => 
-            book.title.toLowerCase().includes(query.toLowerCase()) );
-    } 
+            book.title.toLowerCase().includes(query.toLowerCase()) 
+            || authorsContainQuery(book.authors, query) );
+    };
     
     const booksToShow = searchQuery === "" ? [] : filteredBooks(searchQuery);
 
     const updateSearchQuery = (event) => {
         setSearchQuery(event.target.value);
-    }
+    };
         
     
     return (
@@ -41,7 +49,7 @@ const Search = ({books}) => {
             <div className="search-books-results">
                 <ol className="books-grid">
                     {
-                        booksToShow.length !== 0 && booksToShow.map((book) => <li key={book.id}> <Book book={book}/> </li>)
+                        booksToShow.length !== 0 && booksToShow.map((book) => <li key={book.id}> <Book book={book} onUpdateShelf={onUpdateShelf}/> </li>)
                     }
                 </ol>
                 

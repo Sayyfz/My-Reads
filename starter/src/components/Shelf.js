@@ -1,7 +1,7 @@
 
 import Book from './Book'
 
-const Shelf = ({shelfName, books}) => {
+const Shelf = ({shelfName, books, onUpdateShelf}) => {
 
 
 
@@ -13,7 +13,7 @@ const Shelf = ({shelfName, books}) => {
                     {
                         books.map((book) => 
                             <li key={book.id}>
-                                <Book book={book} />
+                                <Book book={book} onUpdateShelf={onUpdateShelf}/>
                             </li>
                         )
                     }

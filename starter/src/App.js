@@ -19,22 +19,20 @@ function App() {
       const response = await BooksAPI.getAll();
       setAllBooks(response);
       
-      response.map((book) => {
-        book.shelf = "currentlyReading"
-      });
+      console.log(response);
     };
 
     getBooks();
 
-  }, []);
+  });
 
 
   return (
     <div className="app">
-      
+
       <Routes>
-        <Route path="/" element = {<Shelves books={allBooks} />}/>
-        <Route path="/search" element = {<Search books={allBooks} />}/>
+        <Route path="/" element = {<Shelves books={allBooks} onUpdateShelf={updateShelf}/>}/>
+        <Route path="/search" element = {<Search books={allBooks} onUpdateShelf={updateShelf}/>}/>
       </Routes>
       
     </div>
