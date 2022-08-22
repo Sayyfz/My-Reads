@@ -1,6 +1,8 @@
 
 
 const Book = ({book}) => {
+
+    console.log(book.imageLinks.thumbnail)
     return (
         <div className="book">
 
@@ -10,7 +12,7 @@ const Book = ({book}) => {
                     style={{
                     width: 128,
                     height: 192,
-                    backgroundImage: book.cover,
+                    backgroundImage: `url(${book.imageLinks.thumbnail})`,
                     }}
                 ></div>
 
@@ -21,6 +23,8 @@ const Book = ({book}) => {
                         <option value="wantToRead">Want to Read</option>
                         <option value="read">Read</option>
                         <option value="none">None</option>
+
+                        {/* TODO: On click event call update Shelf */}
                     </select>
                 </div>
             </div>
