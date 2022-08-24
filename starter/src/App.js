@@ -10,8 +10,8 @@ function App() {
   const [allBooks, setAllBooks] = useState([]);
 
   const updateShelf = async (book, shelf) => {
-    const response = await BooksAPI.update(book,shelf);
-    console.log(response);
+    await BooksAPI.update(book,shelf);
+    getBooks();
   };
 
   const searchBooksLibrary = async (query, maxResults) => {
@@ -19,17 +19,18 @@ function App() {
     return response;
   }
 
+  const getBooks = async () => {
+    const response = await BooksAPI.getAll();
+    setAllBooks(response);
+    
+    console.log(response);
+  };
+
   useEffect(() => {
-    const getBooks = async () => {
-      const response = await BooksAPI.getAll();
-      setAllBooks(response);
-      
-      console.log(response);
-    };
 
     getBooks();
 
-  });
+  }, []);
 
 
   return (

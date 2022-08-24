@@ -1,9 +1,14 @@
+import { useState } from "react";
 
 
 const Book = ({book, onUpdateShelf}) => {
 
+    let selectedOption = book.shelf;
+
     const selectShelf = (event) => {
         onUpdateShelf(book, event.target.value);
+        console.log(event.target.value);
+        selectedOption = event.target.value;
     };
 
     const undefinedThumbnail = process.env.PUBLIC_URL + '/undefined thumbnail.png';
@@ -23,8 +28,8 @@ const Book = ({book, onUpdateShelf}) => {
                 ></div>
 
                 <div className="book-shelf-changer">
-                    <select onChange={selectShelf}>
-                        <option value="none" disabled>Move to...</option>
+                    <select onChange={selectShelf} value={selectedOption} >
+                        <option value="default" disabled >Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
                         <option value="read">Read</option>
