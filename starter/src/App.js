@@ -12,6 +12,11 @@ function App() {
   const updateShelf = async (book, shelf) => {
     const response = await BooksAPI.update(book,shelf);
     console.log(response);
+  };
+
+  const searchBooksLibrary = async (query, maxResults) => {
+    const response = await BooksAPI.search(query, maxResults);
+    return response;
   }
 
   useEffect(() => {
@@ -31,8 +36,8 @@ function App() {
     <div className="app">
 
       <Routes>
-        <Route path="/" element = {<Shelves books={allBooks} onUpdateShelf={updateShelf}/>}/>
-        <Route path="/search" element = {<Search books={allBooks} onUpdateShelf={updateShelf}/>}/>
+        <Route path="/" element = {<Shelves books={allBooks} onUpdateShelf={updateShelf} />}/>
+        <Route path="/search" element = {<Search onUpdateShelf={updateShelf} onSearchRequest={searchBooksLibrary}/>}/>
       </Routes>
       
     </div>

@@ -3,19 +3,22 @@
 const Book = ({book, onUpdateShelf}) => {
 
     const selectShelf = (event) => {
-        onUpdateShelf(book, event.target.value)
-    }
+        onUpdateShelf(book, event.target.value);
+    };
+
+    const undefinedThumbnail = process.env.PUBLIC_URL + '/undefined thumbnail.png';
 
     return (
         <div className="book">
-
             <div className="book-top">
                 <div
                     className="book-cover"
                     style={{
                     width: 128,
                     height: 192,
-                    backgroundImage: `url(${book.imageLinks.thumbnail})`,
+                    backgroundImage: book.imageLinks ? book.imageLinks.thumbnail ? `url(${book.imageLinks.thumbnail})` : `url(${undefinedThumbnail})`
+                    :
+                    `url(${undefinedThumbnail})`,
                     }}
                 ></div>
 
@@ -27,13 +30,12 @@ const Book = ({book, onUpdateShelf}) => {
                         <option value="read">Read</option>
                         <option value="none">None</option>
 
-                        {/* TODO: On click event call update Shelf */}
                     </select>
                 </div>
             </div>
 
             <div className="book-title">{book.title}</div>
-            <div className="book-authors">{ book.authors.map( (author) => <div>{author}</div> ) }</div>
+            <div className="book-authors">{ book.authors ? book.authors.map( (author) => <div>{author}</div> ) : <span>no authors</span> }</div>
         </div>
     )
 }

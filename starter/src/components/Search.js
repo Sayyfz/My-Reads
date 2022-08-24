@@ -1,32 +1,26 @@
 import {Link} from 'react-router-dom'
-import { useState } from 'react'
+import {  useState } from 'react'
 import Book from './Book'
 
-const Search = ({books, onUpdateShelf}) => {
+const Search = ({onUpdateShelf, onSearchRequest}) => {
 
     
     const [searchQuery, setSearchQuery] = useState("");
-
-    const authorsContainQuery = (authors, query) => {
-        for(let author of authors)
-        {
-            if(author.toLowerCase().includes(query.toLowerCase()) )
-                return true;
-        }
-        return false;
-    };
-
-    const filteredBooks = (query) => {
-        return books.filter( (book) => 
-            book.title.toLowerCase().includes(query.toLowerCase()) 
-            || authorsContainQuery(book.authors, query) );
-    };
     
-    const booksToShow = searchQuery === "" ? [] : filteredBooks(searchQuery);
+    const [booksToShow, setBooksToShow] = useState([]);
 
-    const updateSearchQuery = (event) => {
-        setSearchQuery(event.target.value);
+
+    const searchBooks = async (query, maxResults) => {
+        const response = await onSearchRequest(query, maxResults);
+        return response;
     };
+
+    const updateSearchQuery = async (event) => {
+        setSearchQuery(event.target.value);
+        setBooksToShow(event.target.value === "" ? [] : await searchBooks(event.target.value, 20));
+    };
+
+
         
     
     return (
@@ -42,6 +36,7 @@ const Search = ({books, onUpdateShelf}) => {
                     <input
                         type="text"
                         placeholder="Search by title, author, or ISBN"
+                        value={searchQuery}
                         onChange={updateSearchQuery}
                     />
                 </div>
@@ -49,13 +44,15 @@ const Search = ({books, onUpdateShelf}) => {
             <div className="search-books-results">
                 <ol className="books-grid">
                     {
-                        booksToShow.length !== 0 && booksToShow.map((book) => <li key={book.id}> <Book book={book} onUpdateShelf={onUpdateShelf}/> </li>)
+                        booksToShow.length ? 
+                            booksToShow.map((book) => <li key={book.id}> <Book book={book} onUpdateShelf={onUpdateShelf}/> </li>) :
+                            <p>Search for any book!</p>
                     }
                 </ol>
                 
             </div>
         </div>
-    )
+    );
 };
 
 export default Search;
