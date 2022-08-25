@@ -39,7 +39,7 @@ const Book = ({book, onUpdateShelf, shelfName}) => {
             </div>
 
             <div className="book-title">{book.title}</div>
-            <div className="book-authors">{ book.authors ? book.authors.map( (author) => <div>{author}</div> ) : <span></span>}</div>
+            <div className="book-authors">{ book.authors ? book.authors.map( (author) => <div key={author}>{author}</div> ) : <span></span>}</div>
         </div>
     )
 }

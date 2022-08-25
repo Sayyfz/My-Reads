@@ -1,8 +1,7 @@
 import {Link} from 'react-router-dom'
-import { useState, useCallback, useEffect} from 'react'
+import { useState, useEffect} from 'react'
 import Book from './Book'
 import * as BooksAPI from '../BooksAPI'
-import {debounce} from 'lodash'
 
 const Search = ({onUpdateShelf, getShelfByID}) => {
 
