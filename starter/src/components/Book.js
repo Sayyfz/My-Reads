@@ -1,13 +1,12 @@
-import { useState } from "react";
 
 
-const Book = ({book, onUpdateShelf}) => {
+const Book = ({book, onUpdateShelf, shelfName}) => {
 
-    let selectedOption = book.shelf;
+    let selectedOption = shelfName;
 
+    // console.log(`${book.title}    SHELF: ${shelfName}`)
     const selectShelf = (event) => {
         onUpdateShelf(book, event.target.value);
-        console.log(event.target.value);
         selectedOption = event.target.value;
     };
 
@@ -21,15 +20,15 @@ const Book = ({book, onUpdateShelf}) => {
                     style={{
                     width: 128,
                     height: 192,
-                    backgroundImage: book.imageLinks ? book.imageLinks.thumbnail ? `url(${book.imageLinks.thumbnail})` : `url(${undefinedThumbnail})`
+                    backgroundImage: book.imageLinks && book.imageLinks.thumbnail ? `url(${book.imageLinks.thumbnail})`
                     :
                     `url(${undefinedThumbnail})`,
                     }}
                 ></div>
 
                 <div className="book-shelf-changer">
-                    <select onChange={selectShelf} value={selectedOption} >
-                        <option value="default" disabled >Move to...</option>
+                    <select onChange={selectShelf} value={selectedOption}>
+                        <option value="default" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
                         <option value="read">Read</option>
@@ -40,7 +39,7 @@ const Book = ({book, onUpdateShelf}) => {
             </div>
 
             <div className="book-title">{book.title}</div>
-            <div className="book-authors">{ book.authors ? book.authors.map( (author) => <div>{author}</div> ) : <span>no authors</span> }</div>
+            <div className="book-authors">{ book.authors ? book.authors.map( (author) => <div>{author}</div> ) : <span></span>}</div>
         </div>
     )
 }

@@ -14,9 +14,9 @@ function App() {
     getBooks();
   };
 
-  const searchBooksLibrary = async (query, maxResults) => {
-    const response = await BooksAPI.search(query, maxResults);
-    return response;
+  const getBookShelfByID = (id) => {
+    const targetBook = allBooks.filter((book) => book.id === id)
+    return targetBook.length === 1 ? targetBook[0].shelf : "none"
   }
 
   const getBooks = async () => {
@@ -37,8 +37,8 @@ function App() {
     <div className="app">
 
       <Routes>
-        <Route path="/" element = {<Shelves books={allBooks} onUpdateShelf={updateShelf} />}/>
-        <Route path="/search" element = {<Search onUpdateShelf={updateShelf} onSearchRequest={searchBooksLibrary}/>}/>
+        <Route exact path="/" element = {<Shelves books={allBooks} onUpdateShelf={updateShelf} />}/>
+        <Route exact path="/search" element = {<Search onUpdateShelf={updateShelf}  getShelfByID={getBookShelfByID}/>}/>
       </Routes>
       
     </div>

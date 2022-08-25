@@ -1,28 +1,53 @@
 import {Link} from 'react-router-dom'
-import {  useState } from 'react'
+import { useState, useCallback, useEffect} from 'react'
 import Book from './Book'
+import * as BooksAPI from '../BooksAPI'
+import {debounce} from 'lodash'
 
-const Search = ({onUpdateShelf, onSearchRequest}) => {
+const Search = ({onUpdateShelf, getShelfByID}) => {
 
     
+
+   
     const [searchQuery, setSearchQuery] = useState("");
     
     const [booksToShow, setBooksToShow] = useState([]);
 
-
-    const searchBooks = async (query, maxResults) => {
-        const response = await onSearchRequest(query, maxResults);
-        return response;
-    };
-
-    const updateSearchQuery = async (event) => {
+    const updateSearchQuery = (event) => {
         setSearchQuery(event.target.value);
-        setBooksToShow(event.target.value === "" ? [] : await searchBooks(event.target.value, 20));
     };
 
 
+    useEffect(() => {
+
+        let isMounted = true;
+        const searchForBooks = async () => {
+            const response = await BooksAPI.search(searchQuery, 40);
+            if(response)
+            {
+                if(response.error)
+                    setBooksToShow([]);
+                else
+                {
+                    if(isMounted)
+                        setBooksToShow(response);
+                }
+            }
+            else 
+                setBooksToShow([]);
+
+        };
         
-    
+        if(searchQuery === "")
+            setBooksToShow([]);
+        else
+            searchForBooks();
+
+        return (() => {isMounted = false;} );
+    }
+
+    , [searchQuery]);
+ 
     return (
         <div className="search-books">
             <div className="search-books-bar">
@@ -44,9 +69,15 @@ const Search = ({onUpdateShelf, onSearchRequest}) => {
             <div className="search-books-results">
                 <ol className="books-grid">
                     {
+                        console.log(booksToShow)
+                    }
+                    {
+                        booksToShow &&
                         booksToShow.length ? 
-                            booksToShow.map((book) => <li key={book.id}> <Book book={book} onUpdateShelf={onUpdateShelf}/> </li>) :
-                            <p>Search for any book!</p>
+                            booksToShow.map((book) => {
+                                return ( <li key={book.id}> <Book book={book} onUpdateShelf={onUpdateShelf} shelfName={getShelfByID(book.id)}/> </li> ) 
+                            }) :
+                            <h4>No results to show!</h4>
                     }
                 </ol>
                 
