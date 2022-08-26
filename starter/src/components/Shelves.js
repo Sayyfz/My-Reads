@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import Shelf from './Shelf'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Shelves = ({books, onUpdateShelf}) => {
 

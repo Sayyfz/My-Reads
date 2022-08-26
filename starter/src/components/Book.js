@@ -1,15 +1,21 @@
+import { Dropdown, DropdownButton } from 'react-bootstrap';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const Book = ({book, onUpdateShelf, shelfName}) => {
 
     let selectedOption = shelfName;
-
     // console.log(`${book.title}    SHELF: ${shelfName}`)
     const selectShelf = (event) => {
-        onUpdateShelf(book, event.target.value);
-        selectedOption = event.target.value;
+        
+        onUpdateShelf(book, event);
+        selectedOption = event;
     };
 
+    const highlightShelf = (event) => {
+        console.log(event)
+    }
     const undefinedThumbnail = process.env.PUBLIC_URL + '/undefined thumbnail.png';
 
     return (
@@ -26,15 +32,17 @@ const Book = ({book, onUpdateShelf, shelfName}) => {
                     }}
                 ></div>
 
-                <div className="book-shelf-changer">
-                    <select onChange={selectShelf} value={selectedOption}>
-                        <option value="default" disabled>Move to...</option>
-                        <option value="currentlyReading">Currently Reading</option>
-                        <option value="wantToRead">Want to Read</option>
-                        <option value="read">Read</option>
-                        <option value="none">None</option>
+    
 
-                    </select>
+                <div style={{ position: 'absolute', bottom: -10, right: 0}}>
+
+                    <DropdownButton onSelect={selectShelf} variant ="warning" as={ButtonGroup} title="" >
+                        <Dropdown.Item active={selectedOption === "currentlyReading"} eventKey="currentlyReading" onSelect={highlightShelf}>Currently Reading</Dropdown.Item>
+                        <Dropdown.Item active={selectedOption === "wantToRead"} eventKey="wantToRead" onSelect={highlightShelf}>Want to Read</Dropdown.Item>
+                        <Dropdown.Item active={selectedOption === "read"} eventKey="read" onSelect={highlightShelf}>Read</Dropdown.Item>
+                        <Dropdown.Divider/>
+                        <Dropdown.Item active={selectedOption === "none"} eventKey="none">None</Dropdown.Item>
+                    </DropdownButton>
                 </div>
             </div>
 

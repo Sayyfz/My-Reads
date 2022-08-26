@@ -15,7 +15,7 @@ body,
 
 .list-books-title {
   padding: 10px 0;
-  background: #2e7c31;
+  background: #c4a13b;
   text-align: center;
 }
 .list-books-title h1 {
@@ -32,6 +32,8 @@ body,
 .bookshelf {
   padding: 0 10px 20px;
 }
+
+
 
 @media (min-width: 600px) {
   .bookshelf {

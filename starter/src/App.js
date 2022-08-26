@@ -23,7 +23,6 @@ function App() {
     const response = await BooksAPI.getAll();
     setAllBooks(response);
     
-    console.log(response);
   };
 
   useEffect(() => {

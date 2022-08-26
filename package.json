@@ -1,6 +1,9 @@
 {
   "dependencies": {
+    "bootstrap": "^5.2.0",
     "lodash.debounce": "^4.0.8",
+    "react-bootstrap": "^2.5.0",
+    "sudo": "^1.0.3",
     "throttle-debounce": "^5.0.0"
   }
 }
