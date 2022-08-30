@@ -13,6 +13,17 @@ function App() {
     await BooksAPI.update(book,shelf);
     getBooks();
   };
+  // const updateShelf = async (book,shelf) => {
+  //   await BooksAPI.update(book,shelf);
+  //   await updateShelfLocally(book,shelf);
+  //   setAllBooks(allBooks);
+
+  // }
+
+  const updateShelfLocally = (book,shelf) => {
+    allBooks.filter((b) => b.id === book.id).shelf = shelf
+    console.log(allBooks.filter((b) => b.id === book.id).shelf)
+  }
 
   const getBookShelfByID = (id) => {
     const targetBook = allBooks.filter((book) => book.id === id)

@@ -26,11 +26,11 @@ const Search = ({onUpdateShelf, getShelfByID}) => {
             {
                 if(response.error)
                     setBooksToShow([]);
-                else
-                {
-                    if(isMounted)
-                        setBooksToShow(response);
-                }
+
+                // If request to api search is made but the component is unmounted when it gets the response, it will not update books
+                else if(isMounted)
+                    setBooksToShow(response);
+                
             }
             else 
                 setBooksToShow([]);
@@ -67,9 +67,6 @@ const Search = ({onUpdateShelf, getShelfByID}) => {
             </div>
             <div className="search-books-results">
                 <ol className="books-grid">
-                    {
-                        console.log(booksToShow)
-                    }
                     {
                         booksToShow &&
                         booksToShow.length ? 

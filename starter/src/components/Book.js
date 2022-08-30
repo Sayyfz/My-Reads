@@ -36,7 +36,7 @@ const Book = ({book, onUpdateShelf, shelfName}) => {
 
                 <div style={{ position: 'absolute', bottom: -10, right: 0}}>
 
-                    <DropdownButton onSelect={selectShelf} variant ="warning" as={ButtonGroup} title="" >
+                    <DropdownButton onSelect={selectShelf} className="book-shelf-changer" as={ButtonGroup} title="" >
                         <Dropdown.Item active={selectedOption === "currentlyReading"} eventKey="currentlyReading" onSelect={highlightShelf}>Currently Reading</Dropdown.Item>
                         <Dropdown.Item active={selectedOption === "wantToRead"} eventKey="wantToRead" onSelect={highlightShelf}>Want to Read</Dropdown.Item>
                         <Dropdown.Item active={selectedOption === "read"} eventKey="read" onSelect={highlightShelf}>Read</Dropdown.Item>
@@ -45,9 +45,9 @@ const Book = ({book, onUpdateShelf, shelfName}) => {
                     </DropdownButton>
                 </div>
             </div>
-
+            {/* book.authors.map( (author) => <div key={author}>{author}</div> ) */}
             <div className="book-title">{book.title}</div>
-            <div className="book-authors">{ book.authors ? book.authors.map( (author) => <div key={author}>{author}</div> ) : <span></span>}</div>
+            <div className="book-authors">{ book.authors ? <div>{book.authors.join(", ")}</div> : <span></span>}</div>
         </div>
     )
 }
