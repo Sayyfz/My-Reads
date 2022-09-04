@@ -18,7 +18,6 @@ const Book = ({book, onUpdateShelf, shelfName, bookOnClick}) => {
     }
 
     const getClickedBook = (e) => {
-        console.log('book')
         bookOnClick(book)
         
     }

@@ -55,7 +55,7 @@ function App() {
       <Routes>
         <Route exact path="/" element = {<Shelves books={allBooks} onUpdateShelf={updateShelf} bookOnClick={bookOnClick}/>}/>
         <Route exact path="/search" element = {<Search onUpdateShelf={updateShelf}  getShelfByID={getBookShelfByID} bookOnClick={bookOnClick}/>}/>
-        <Route path="/book" element = {<BookPage book = {bookObject}/>}/>
+        <Route path="/book/*" element = {<BookPage book = {bookObject}/>}/>
       </Routes>
       
     </div>

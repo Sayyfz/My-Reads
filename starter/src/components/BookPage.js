@@ -13,6 +13,7 @@ const BookPage = ({book}) => {
                 >
                 Close
                 </Link>
+               
 
                 <div
                     className="book-cover"
