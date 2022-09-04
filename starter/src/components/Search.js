@@ -3,7 +3,7 @@ import { useState, useEffect} from 'react'
 import Book from './Book'
 import * as BooksAPI from '../BooksAPI'
 
-const Search = ({onUpdateShelf, getShelfByID}) => {
+const Search = ({onUpdateShelf, getShelfByID, bookOnClick}) => {
 
     
 
@@ -71,7 +71,7 @@ const Search = ({onUpdateShelf, getShelfByID}) => {
                         booksToShow &&
                         booksToShow.length ? 
                             booksToShow.map((book) => {
-                                return ( <li key={book.id}> <Book book={book} onUpdateShelf={onUpdateShelf} shelfName={getShelfByID(book.id)}/> </li> ) 
+                                return ( <li key={book.id}> <Book book={book} onUpdateShelf={onUpdateShelf} shelfName={getShelfByID(book.id)} bookOnClick={bookOnClick}/> </li> ) 
                             }) :
                             <h4>No results to show!</h4>
                     }

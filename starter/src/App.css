@@ -177,3 +177,12 @@ body,
   text-align: center;
   font-size: 0.8em;
 }
+.book-show-info {
+  width: 128px;
+  height: 196px;
+  position: absolute;
+}
+
+.book-show-info :hover {
+  
+}

@@ -1,7 +1,7 @@
 
 import Book from './Book'
 
-const Shelf = ({shelfName, books, onUpdateShelf}) => {
+const Shelf = ({shelfName, books, onUpdateShelf, bookOnClick}) => {
 
     const shelfNamesMap = {
         "Currently Reading": "currentlyReading",
@@ -20,7 +20,7 @@ const Shelf = ({shelfName, books, onUpdateShelf}) => {
                     {
                         books.map((book) => 
                             <li key={book.id}>
-                                <Book book={book} onUpdateShelf={onUpdateShelf} shelfName={shelfNamesMap[shelfName]}/>
+                                <Book book={book} onUpdateShelf={onUpdateShelf} shelfName={shelfNamesMap[shelfName] } bookOnClick={bookOnClick}/>
                             </li>
                         )
                     }

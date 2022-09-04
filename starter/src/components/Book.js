@@ -1,9 +1,9 @@
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom'
 
-
-const Book = ({book, onUpdateShelf, shelfName}) => {
+const Book = ({book, onUpdateShelf, shelfName, bookOnClick}) => {
 
     let selectedOption = shelfName;
     // console.log(`${book.title}    SHELF: ${shelfName}`)
@@ -16,12 +16,19 @@ const Book = ({book, onUpdateShelf, shelfName}) => {
     const highlightShelf = (event) => {
         console.log(event)
     }
+
+    const getClickedBook = (e) => {
+        console.log('book')
+        bookOnClick(book)
+        
+    }
+
     const undefinedThumbnail = process.env.PUBLIC_URL + '/undefined thumbnail.png';
 
     return (
         <div className="book">
             <div className="book-top">
-                <div
+                <div onClick={getClickedBook}
                     className="book-cover"
                     style={{
                     width: 128,
@@ -30,7 +37,16 @@ const Book = ({book, onUpdateShelf, shelfName}) => {
                     :
                     `url(${undefinedThumbnail})`,
                     }}
-                ></div>
+                >
+                     <Link 
+                        to={`/book/${book.id}`}
+                        className="book-show-info"
+                        >
+                        Show Info
+                    </Link>
+                </div>
+
+               
 
     
 
