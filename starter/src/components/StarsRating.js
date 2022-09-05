@@ -20,12 +20,7 @@ const StarsRating = ({rating}) => {
 
 
     return (
-        <div className="show-book-rating">
-            {/* <ReactStars count={5} size={60}  isHalf={true} activeColor=' #ffc107' value={rating} edit={false} 
-                emptyIcon={<i className="far fa-star"></i>}
-                halfIcon={<i className="fa fa-star-half-alt"></i>}
-                fullIcon={<i className="fa fa-star"></i>}
-            /> */}
+        <div className="show-book-rating ">
             {
                 stars.map((star,i) => <Star key={i} starType={getStarStype(i)} />)
             }   
