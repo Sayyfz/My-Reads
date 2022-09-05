@@ -3,7 +3,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom'
 
-const Book = ({book, onUpdateShelf, shelfName, bookOnClick}) => {
+const Book = ({book, onUpdateShelf, shelfName}) => {
 
     let selectedOption = shelfName;
     // console.log(`${book.title}    SHELF: ${shelfName}`)
@@ -17,39 +17,34 @@ const Book = ({book, onUpdateShelf, shelfName, bookOnClick}) => {
         console.log(event)
     }
 
-    const getClickedBook = (e) => {
-        bookOnClick(book)
-        
-    }
 
     const undefinedThumbnail = process.env.PUBLIC_URL + '/undefined thumbnail.png';
 
     return (
         <div className="book">
             <div className="book-top">
-                <div onClick={getClickedBook}
-                    className="book-cover"
-                    style={{
-                    width: 128,
-                    height: 192,
-                    backgroundImage: book.imageLinks && book.imageLinks.thumbnail ? `url(${book.imageLinks.thumbnail})`
-                    :
-                    `url(${undefinedThumbnail})`,
-                    }}
-                >
-                     <Link 
-                        to={`/book/${book.id}`}
-                        className="book-show-info"
-                        >
-                        Show Info
-                    </Link>
-                </div>
+                <Link  to={`/book/${book.id}`} className="book-show-info" >
+
+                    <div 
+                        className="book-cover"
+                        style={{
+                        width: 128,
+                        height: 192,
+                        backgroundImage: book.imageLinks && book.imageLinks.thumbnail ? `url(${book.imageLinks.thumbnail})`
+                        :
+                        `url(${undefinedThumbnail})`,
+                        }}
+                    ></div>
+
+                </Link>
+                
+                
 
                
 
     
 
-                <div style={{ position: 'absolute', bottom: -10, right: 0}}>
+                <div style={{ position: 'absolute', bottom: -5, right: -15}}>
 
                     <DropdownButton onSelect={selectShelf} className="book-shelf-changer" as={ButtonGroup} title="" >
                         <Dropdown.Item active={selectedOption === "currentlyReading"} eventKey="currentlyReading" onSelect={highlightShelf}>Currently Reading</Dropdown.Item>
@@ -60,9 +55,12 @@ const Book = ({book, onUpdateShelf, shelfName, bookOnClick}) => {
                     </DropdownButton>
                 </div>
             </div>
+            <div className='book-bottom'>
+                <div className="book-title">{book.title}</div>
+                <div className="book-authors">{ book.authors ? <div>{book.authors.join(", ")}</div> : <span></span>}</div>
+            </div>
             {/* book.authors.map( (author) => <div key={author}>{author}</div> ) */}
-            <div className="book-title">{book.title}</div>
-            <div className="book-authors">{ book.authors ? <div>{book.authors.join(", ")}</div> : <span></span>}</div>
+            
         </div>
     )
 }

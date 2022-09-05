@@ -8,7 +8,6 @@ import * as BooksAPI from "./BooksAPI"
 
 function App() {
   
-  let bookObject
   const [allBooks, setAllBooks] = useState([]);
 
   const updateShelf = async (book, shelf) => {
@@ -22,14 +21,19 @@ function App() {
 
   // }
 
-  const updateShelfLocally = (book,shelf) => {
-    allBooks.filter((b) => b.id === book.id).shelf = shelf
-    console.log(allBooks.filter((b) => b.id === book.id).shelf)
-  }
+  // const updateShelfLocally = (book,shelf) => {
+  //   allBooks.filter((b) => b.id === book.id).shelf = shelf
+  //   console.log(allBooks.filter((b) => b.id === book.id).shelf)
+  // }
 
   const getBookShelfByID = (id) => {
     const targetBook = allBooks.filter((book) => book.id === id)
     return targetBook.length === 1 ? targetBook[0].shelf : "none"
+  }
+
+  const getBookById = async (id) => {
+    const response = await BooksAPI.get(id)
+    return response
   }
 
   const getBooks = async () => {
@@ -37,11 +41,6 @@ function App() {
     setAllBooks(response);
     
   };
-
-  const bookOnClick = (book) => {
-    bookObject = book
-    console.log(bookObject)
-  }
 
   useEffect(() => {
 
@@ -53,9 +52,9 @@ function App() {
     <div className="app">
 
       <Routes>
-        <Route exact path="/" element = {<Shelves books={allBooks} onUpdateShelf={updateShelf} bookOnClick={bookOnClick}/>}/>
-        <Route exact path="/search" element = {<Search onUpdateShelf={updateShelf}  getShelfByID={getBookShelfByID} bookOnClick={bookOnClick}/>}/>
-        <Route path="/book/*" element = {<BookPage book = {bookObject}/>}/>
+        <Route exact path="/" element = {<Shelves books={allBooks} onUpdateShelf={updateShelf} />}/>
+        <Route exact path="/search" element = {<Search onUpdateShelf={updateShelf}  getShelfByID={getBookShelfByID} />}/>
+        <Route path="/book/:bookId" element = {<BookPage getBook = {getBookById}/>}/>
       </Routes>
       
     </div>

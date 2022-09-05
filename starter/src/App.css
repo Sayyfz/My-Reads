@@ -142,7 +142,7 @@ body,
   position: relative;
   height: 200px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .book-shelf-changer {
@@ -171,6 +171,7 @@ body,
 .book-cover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   background: #eee;
+  margin: auto;
 }
 .book-cover-title {
   padding: 20px 10px 0;
@@ -178,11 +179,30 @@ body,
   font-size: 0.8em;
 }
 .book-show-info {
-  width: 128px;
-  height: 196px;
+  width: 140px;
+  height: 200px;
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: auto;
+  transition: all .7s ease;
+  border-radius: 5px;
+}
+.book-show-info:hover {
+  background-color: rgba(78, 78, 78, 0.5);
+  border-radius: 10px;
+  width: 160px;
+  height: 225px;
+
 }
 
-.book-show-info :hover {
-  
+
+.book-bottom {
+  margin-top: 20px;
+  margin-left: 15px;
 }
+
+
+
+
