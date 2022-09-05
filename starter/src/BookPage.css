@@ -6,17 +6,16 @@ p {
     font-family: Times, "Times New Roman", Georgia, serif;
     font-size: 1.2rem;
 }
+
 .content-wrapper {
     width: min(90%, 100rem);
     height: 100%;
-    display: flex;
-    flex-direction: row;
+    
 }
 .show-book-page {
+
     height: 100%;
     width: 100vw;
-    display: flex;
-    flex-direction: row;
 }
 
     /* --clr-primary-200: green
@@ -24,6 +23,7 @@ p {
     --ff-accent: 'Playfair Display' , serif; */
 
 .body{
+    height: 100vh;
     font-weight: 400;
     font-family: var(--ff-primary);
     font-size: 1.3125rem;
@@ -32,8 +32,6 @@ p {
 
 .static-book-preview {
     height: 100%;
-    width: 40%;
-    margin: 0;
     position: sticky;
 }
 
@@ -55,19 +53,11 @@ p {
     padding-bottom: 0;
 }
 .show-book-container {
-  
-  width: 40px;
+  padding: auto;
+  width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  flex-wrap: nowrap;
-  padding: 1rem;
-  align-self: flex-end;
 }
 .show-book-cover {
-    position: absolute;
-  right: 3rem;
   top:2.3rem;
   width: 13rem;
   height: 19.5rem;
@@ -108,3 +98,15 @@ p {
 }
 
 
+.normal-btn {
+    border: 1px solid rgba(0, 0, 0, 0.479);
+    background-color: rgba(250, 235, 215, 0.267);
+}
+.normal-btn:hover {
+    background-color: rgba(250, 235, 215, 0.555);
+
+}
+.normal-btn:focus {
+    background-color: rgba(250, 235, 215, 0.87);
+
+}

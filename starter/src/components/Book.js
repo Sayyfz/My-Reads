@@ -13,9 +13,7 @@ const Book = ({book, onUpdateShelf, shelfName}) => {
         selectedOption = event;
     };
 
-    const highlightShelf = (event) => {
-        console.log(event)
-    }
+   
 
 
     const undefinedThumbnail = process.env.PUBLIC_URL + '/undefined thumbnail.png';
@@ -47,9 +45,9 @@ const Book = ({book, onUpdateShelf, shelfName}) => {
                 <div style={{ position: 'absolute', bottom: -5, right: -15}}>
 
                     <DropdownButton onSelect={selectShelf} className="book-shelf-changer" as={ButtonGroup} title="" >
-                        <Dropdown.Item active={selectedOption === "currentlyReading"} eventKey="currentlyReading" onSelect={highlightShelf}>Currently Reading</Dropdown.Item>
-                        <Dropdown.Item active={selectedOption === "wantToRead"} eventKey="wantToRead" onSelect={highlightShelf}>Want to Read</Dropdown.Item>
-                        <Dropdown.Item active={selectedOption === "read"} eventKey="read" onSelect={highlightShelf}>Read</Dropdown.Item>
+                        <Dropdown.Item active={selectedOption === "currentlyReading"} eventKey="currentlyReading" >Currently Reading</Dropdown.Item>
+                        <Dropdown.Item active={selectedOption === "wantToRead"} eventKey="wantToRead" >Want to Read</Dropdown.Item>
+                        <Dropdown.Item active={selectedOption === "read"} eventKey="read" >Read</Dropdown.Item>
                         <Dropdown.Divider/>
                         <Dropdown.Item active={selectedOption === "none"} eventKey="none">None</Dropdown.Item>
                     </DropdownButton>

@@ -50,11 +50,11 @@ function App() {
 
   return (
     <div className="app">
-
+      
       <Routes>
         <Route exact path="/" element = {<Shelves books={allBooks} onUpdateShelf={updateShelf} />}/>
         <Route exact path="/search" element = {<Search onUpdateShelf={updateShelf}  getShelfByID={getBookShelfByID} />}/>
-        <Route path="/book/:bookId" element = {<BookPage getBook = {getBookById}/>}/>
+        <Route path="/book/:bookId" element = {<BookPage onUpdateShelf={updateShelf} getBook = {getBookById}/>}/>
       </Routes>
       
     </div>
