@@ -14,7 +14,7 @@ const BookPageStickyPart = ({book, onUpdateShelf}) => {
                 <img src={book && book.imageLinks && book.imageLinks.thumbnail?  book.imageLinks.thumbnail : undefinedThumbnail} className='show-book-cover ' />
             </div>
             <button onClick={updateShelf} value='currentlyReading' type="button" class="btn btn-primary mt-3">Currently Reading</button>
-            <button onClick={updateShelf} value='wantToRead' type="button" class="btn normal-btn mt-4">Want To Read</button>
+            <button onClick={updateShelf} value='wantToRead' type="button" class="btn normal-btn mt-3">Want To Read</button>
             <button onClick={updateShelf} value='read' type="button" class="btn normal-btn gray-500 mt-3">Read</button>
             <button onClick={updateShelf} value='none' type="button" class="btn normal-btn gray-500 mt-3">None</button>
         </div>
