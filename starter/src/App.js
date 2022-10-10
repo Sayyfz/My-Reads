@@ -1,11 +1,11 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { Routes, Route} from 'react-router-dom'
-import MContext from "./Context";
-import Shelves from "./components/Shelves";
-import Search from "./components/Search";
-import BookPage from "./components/BookPage";
-import * as BooksAPI from "./BooksAPI"
+import MContext from "./Context.js";
+import Shelves from "./components/Shelves.js";
+import Search from "./components/Search.js";
+import BookPage from "./components/BookPage.js";
+import * as BooksAPI from "./BooksAPI.js"
 
 function App() {
   
