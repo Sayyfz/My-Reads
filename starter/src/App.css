@@ -58,7 +58,8 @@ body,
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #2e7d32;
+  background: #1084C7;
+
   background-image: url("./icons/add.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -190,7 +191,7 @@ body,
   border-radius: 5px;
 }
 .book-show-info:hover {
-  background-color: rgba(78, 78, 78, 0.5);
+  background-color: rgba(67, 95, 255, 0.349);
   border-radius: 10px;
   width: 160px;
   height: 225px;

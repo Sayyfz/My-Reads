@@ -3,7 +3,7 @@ import StarsRating from './StarsRating';
 
 const BookPageScrollableContent = ({book}) => {
     return (
-        <div className='scrollable-content-container nice-space'> 
+        <div className='scrollable-content-container nice-space mb-5'> 
             <h2> {book.title}</h2>
             <h3> { book.authors && <div>{book.authors.join(", ")}</div> } </h3>
             <StarsRating rating={book.averageRating} />
@@ -27,6 +27,7 @@ const BookPageScrollableContent = ({book}) => {
                 <h6>
                     <b>Publish Date: </b> <span className='text-muted'>{book.publishedDate}</span>
                 </h6>
+                
             </div>
         </div>
     )

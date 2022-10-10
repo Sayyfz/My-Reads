@@ -10,15 +10,17 @@ const BookPage = ({getBook, onUpdateShelf}) => {
     const [book, setBook] = useState({})
     const params = useParams().bookId
 
-    const getBookToShow = async () => {
-        
-        const res = await getBook(params)
-        setBook(res)
-        console.log(res)
-    }
+    
 
     useEffect(() => {
+        const getBookToShow = async () => {
+        
+            const res = await getBook(params)
+            setBook(res)
+            console.log(res)
+        }
         getBookToShow()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return(

@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { Routes, Route} from 'react-router-dom'
+import MContext from "./Context";
 import Shelves from "./components/Shelves";
 import Search from "./components/Search";
 import BookPage from "./components/BookPage";
@@ -8,12 +9,12 @@ import * as BooksAPI from "./BooksAPI"
 
 function App() {
   
-  const [allBooks, setAllBooks] = useState([]);
+  const [allBooks, setAllBooks] = useState([])
 
   const updateShelf = async (book, shelf) => {
-    await BooksAPI.update(book,shelf);
-    getBooks();
-  };
+    await BooksAPI.update(book,shelf)
+    getBooks()
+  }
   // const updateShelf = async (book,shelf) => {
   //   await BooksAPI.update(book,shelf);
   //   await updateShelfLocally(book,shelf);
@@ -37,28 +38,34 @@ function App() {
   }
 
   const getBooks = async () => {
-    const response = await BooksAPI.getAll();
-    setAllBooks(response);
+    const response = await BooksAPI.getAll()
+    if(response.error)
+      console.log(response.error)
+    else
+      setAllBooks(response)
     
-  };
+  }
 
   useEffect(() => {
 
-    getBooks();
+    getBooks()
 
-  }, []);
+  }, [])
 
   return (
     <div className="app">
+      <MContext.Provider value={updateShelf}>
+        <Routes>
+            <Route exact path="/" element = {<Shelves books={allBooks}  />}/>
+            <Route exact path="/search" element = {<Search onUpdateShelf={updateShelf}  getShelfByID={getBookShelfByID} />}/>
+            <Route path="/book/:bookId" element = {<BookPage onUpdateShelf={updateShelf} getBook = {getBookById}/>}/>
+          </Routes>
+      </MContext.Provider>
       
-      <Routes>
-        <Route exact path="/" element = {<Shelves books={allBooks} onUpdateShelf={updateShelf} />}/>
-        <Route exact path="/search" element = {<Search onUpdateShelf={updateShelf}  getShelfByID={getBookShelfByID} />}/>
-        <Route path="/book/:bookId" element = {<BookPage onUpdateShelf={updateShelf} getBook = {getBookById}/>}/>
-      </Routes>
       
+
     </div>
   );
 };
 
-export default App;
+export default App

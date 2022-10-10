@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import Shelf from './Shelf'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Shelves = ({books, onUpdateShelf}) => {
+const Shelves = ({books}) => {
 
     const currentlyReading = books.filter((book) => book.shelf === "currentlyReading");
     const wantToRead = books.filter((book) => book.shelf === "wantToRead");
@@ -16,9 +16,9 @@ const Shelves = ({books, onUpdateShelf}) => {
                 </div>
                 <div className="list-books-content">
                     <div>
-                        <Shelf shelfName="Currently Reading" books={currentlyReading} onUpdateShelf={onUpdateShelf} />
-                        <Shelf shelfName="Want to Read" books={wantToRead} onUpdateShelf={onUpdateShelf} />
-                        <Shelf shelfName="Read" books={read} onUpdateShelf={onUpdateShelf}/>
+                        <Shelf shelfName="Currently Reading" books={currentlyReading}  />
+                        <Shelf shelfName="Want to Read" books={wantToRead}  />
+                        <Shelf shelfName="Read" books={read} />
                     </div>
                 </div>
 
